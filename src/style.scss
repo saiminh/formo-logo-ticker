@@ -1,0 +1,36 @@
+.formo-logo-ticker {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--wp--preset--color--formo-grey, #f0f0ff);
+}
+.formo-logo-ticker__logos {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.formo-logo-ticker__logos .wp-block-image {
+  flex: 0 0 auto;
+  padding: 2em;
+  margin-bottom: 0;
+  position: relative;
+  
+  & img {
+    display: block;
+    width: auto!important;
+    height: 3.2vw!important;
+  }
+}
+@media screen and (max-width: 782px) {
+  .formo-logo-ticker__logos .wp-block-image {
+  
+    & img {
+      width: auto!important;
+      height: 7vw!important;
+    }
+  }
+}
