@@ -5,13 +5,22 @@ logoTickers.forEach(logoTicker => {
 
 let resizeTimer;
 
+let prevWidth = window.innerWidth;
+
 window.addEventListener('resize', () => {
+  const widthChanged = window.innerWidth !== prevWidth;
+
+  if (!widthChanged) {
+    return;
+  }
+  
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function() {
     logoTickers.forEach(logoTicker => {
       init(logoTicker);
     });
   }, 250)
+  prevWidth = window.innerWidth;
 });
 
 function init(logoTicker){
@@ -19,12 +28,10 @@ function init(logoTicker){
   const logosWidth = logos.offsetWidth;
   const speed = logoTicker.getAttribute('data-scroll-speed');
 
-  if (logosWidth < (window.innerWidth * 2)) {
-    const factor = (window.innerWidth * 2) / logosWidth;
-    for (let i = 0; i < factor; i++) {
-      const clone = logos.cloneNode(true);
-      logoTicker.appendChild(clone);
-    }
+  const factor = Math.ceil( (window.innerWidth * 2) / logosWidth );
+  for (let i = 0; i < factor; i++) {
+    const clone = logos.cloneNode(true);
+    logoTicker.appendChild(clone);
   }
   const allLogos = logoTicker.querySelectorAll('.formo-logo-ticker__logos');
   allLogos.forEach((logos) => {
